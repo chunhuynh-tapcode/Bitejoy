@@ -29,7 +29,7 @@ function Header() {
                 </div>
             </div>
             <div className={cx('mega-menu', {show: isMenuOpen})}>
-                <ul>
+                <ul className={cx('pages-btn')}>
                     <li><a href='/'>HOME</a></li>
                     <li><a href='/Menu'>MENU</a></li>
                     <li><a href='/About'>ABOUT</a></li>

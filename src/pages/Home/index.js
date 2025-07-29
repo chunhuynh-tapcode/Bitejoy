@@ -1,4 +1,3 @@
-import "./Home.module.scss"
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
 
@@ -161,7 +160,7 @@ function Home() {
                                 className={cx("menu-item", { active: activeCategory === cat})} 
                                 onClick={() => setActiveCategory(cat)}
                             >
-                                {cat}
+                                <p>{cat}</p>
                             </div>
                         ))}
                     </div>

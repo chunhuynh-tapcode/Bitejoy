@@ -107,14 +107,16 @@
   padding-bottom: 40px;
 
 
-  ul {
+  .pages-btn {
     list-style: none;
     padding: 2rem;
     margin: 0;
     text-align: center;
     display: flex;
-    gap: 32px
-    ;
+    gap: 32px;
+    transform: translateY(0px);
+    opacity: 0;
+    transition: transform 1s linear, opacity 1s linear;
 
     li a {
         font-family: 'Realce', sans-serif;
@@ -133,12 +135,17 @@
 
   &.show {
         transform: translateY(0);
+
+        .pages-btn {
+            transform: translateY(-30px);
+            opacity: 1;
+        }
   }
 }
 
 .socials {
-        display: flex;
-        gap: 15px;
+    display: flex;
+    gap: 15px;
 }
 
 .icon-social {
