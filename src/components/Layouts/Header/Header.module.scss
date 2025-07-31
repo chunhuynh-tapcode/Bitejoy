@@ -40,6 +40,7 @@
 
 .menu-btn {
     display: flex;
+    background-color: var(--yellow-color);
     align-items: center;
     gap: 15px;
     padding: 12px 20px;
@@ -76,15 +77,18 @@
 }
 
 .burger-top {
-
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
 }
 
 .burger-middle {
-
+    transform: translate3d(0%, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
 }
 
 .burger-bottom {
-
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
 }
 
 .mega-menu {

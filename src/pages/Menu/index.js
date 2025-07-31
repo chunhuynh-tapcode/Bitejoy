@@ -2,9 +2,10 @@ import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faStar } from "@fortawesome/free-solid-svg-icons";
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 
 const cx = classNames.bind(styles);
 
@@ -120,6 +121,35 @@ function Menu() {
     ];
     const [activeIndex, setActiveIndex] = useState(0);
 
+    const answers = [
+        {
+            questions: "What are your opening hours?",
+            answers: "We’re open every day from 10:00 AM to 10:00 PM. Whether you’re craving lunch, dinner, or a late-night snack, we’re here to serve you!"
+        },
+        {
+            questions: "Can I place an order online?",
+            answers: "Absolutely! You can order directly through our website or mobile app for pickup or delivery. It’s fast, easy, and convenient!"
+        },
+        {
+            questions: "Do you offer vegetarian or vegan options?",
+            answers: "Yes, we do! Our menu includes a variety of vegetarian and vegan-friendly options, such as veggie burgers, fresh salads, and plant-based sides."
+        },
+        {
+            questions: "Do you accommodate food allergies?",
+            answers: "We take food allergies seriously and are happy to help! Please inform our staff of any allergies when ordering, and we’ll do our best to accommodate your needs."
+        }
+    ];
+    const [activeAnswer, setActiveAnswer] = useState(false);
+    const handleToggle = (index) => {
+        if (activeAnswer === index) {
+            setActiveAnswer(null);
+        } else {
+            setActiveAnswer(index);
+        }
+    };
+
+    
+
     return (
         <div className={cx("Menu")}>
             <div className={cx("menu")}>
@@ -174,8 +204,8 @@ function Menu() {
                                 <div
                                     key={index}
                                     className={cx('author-review', {
-                                    active: index === activeIndex,
-                                    hidden: index !== activeIndex,
+                                        active: index === activeIndex,
+                                        hidden: index !== activeIndex
                                     })}
                                 >
                                     <div className={cx('star-wrapper')}>
@@ -225,34 +255,42 @@ function Menu() {
                 </h2>
 
                 <div className={cx("questions-list")}>
-                    <div className={cx("question-item")}>
-                        <h3 className={cx("question")}>What are your opening hours?</h3>
-                        <div className={cx("plus-icon")}>
-                            <FontAwesomeIcon className={cx('icon-faq')} icon={faPlus} />
-                        </div>
-                        <p className={cx("answer")}>We’re open every day from 10:00 AM to 10:00 PM. Whether you’re craving lunch, dinner, or a late-night snack, we’re here to serve you!</p>
-                    </div>
-                    <div className={cx("question-item")}>
-                        <h3 className={cx("question")}>Can I place an order online?</h3>
-                        <div className={cx("plus-icon")}>
-                            <FontAwesomeIcon className={cx('icon-faq')} icon={faPlus} />
-                        </div>
-                        <p className={cx("answer")}>Absolutely! You can order directly through our website or mobile app for pickup or delivery. It’s fast, easy, and convenient!</p>
-                    </div>
-                    <div className={cx("question-item")}>
-                        <h3 className={cx("question")}>Do you offer vegetarian or vegan options?</h3>
-                        <div className={cx("plus-icon")}>
-                            <FontAwesomeIcon className={cx('icon-faq')} icon={faPlus} />
-                        </div>
-                        <p className={cx("answer")}>Yes, we do! Our menu includes a variety of vegetarian and vegan-friendly options, such as veggie burgers, fresh salads, and plant-based sides.</p>
-                    </div>
-                    <div className={cx("question-item")}>
-                        <h3 className={cx("question")}>Do you accommodate food allergies?</h3>
-                        <div className={cx("plus-icon")}>
-                            <FontAwesomeIcon className={cx('icon-faq')} icon={faPlus} />
-                        </div>
-                        <p className={cx("answer")}>We take food allergies seriously and are happy to help! Please inform our staff of any allergies when ordering, and we’ll do our best to accommodate your needs.</p>
-                    </div>
+                    {answers.map((item, index) => {
+                        const isActive = index === activeAnswer;
+
+                        return (
+                            <div
+                                key={index}
+                                className={cx("question-item", { active: index === activeAnswer })}
+                                onClick={() => handleToggle(index)}
+                            >
+                                <div className={cx("question-header")}>
+                                    <h3 className={cx("question")}>{item.questions}</h3>
+                                    <div className={cx("plus-icon")}>
+                                        <FontAwesomeIcon 
+                                            className={cx('icon-faq')} 
+                                            icon={isActive ? faMinus : faPlus} 
+                                        />
+                                    </div>
+                                </div>
+
+                                <AnimatePresence initial={false}>
+                                    {isActive && (
+                                        <motion.div
+                                            key="content"
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.4, ease: "easeInOut" }}
+                                            className={cx("answer-wrapper")}
+                                        >
+                                            <p className={cx("answer")}>{item.answers}</p>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>

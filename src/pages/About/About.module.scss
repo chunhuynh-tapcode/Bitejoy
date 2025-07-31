@@ -14,7 +14,7 @@
     background-color: var(--yellow-color);
     padding: 32px 0;
     text-align: center;
-    padding: 100px 0;
+    padding: 180px 0;
 }
 
 .left {
@@ -127,7 +127,7 @@
     display: flex;
     justify-content: center;
     background-color: var(--yellow-color);
-    padding: 100px 0;
+    padding: 50px 0;
     gap: 32px;
 }
 
@@ -231,6 +231,113 @@
     display: flex;
     flex-direction: column;
     margin-right: 60px;
+
+    p {
+        text-align: center;
+    }
+}
+
+// Our Process
+.our-process {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--yellow-color);
+    padding: 50px 0;
+}
+
+.our-process .our-process-wrapper {
+    width: 1200px;
+}
+
+.our-process-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 32px 0;
+    width: 100%;
+    gap: 48px;
+}
+
+.step-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.step-1,
+.step-2,
+.step-3 {
+    display: flex;
+}
+
+.line {
+    height: 100px;
+    border-right: 3px solid #000;
+    margin-right: 80px;
+}
+
+.step-left {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: end;
+    margin-right: 80px;
+    border-right: 3px solid #000;
+
+    p {
+        font-family: 'Realce', sans-serif;
+        font-size: 4rem;
+        font-weight: 450;
+        color: #000;
+        line-height: 1;
+    }
+}
+
+.scroll-container {
+    position: relative;
+    padding-right: 80px;
+    
+}
+
+.step-dot {
+    position: absolute;
+    top: 0;
+    right: -28px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    height: max-content;
+    line-height: 1;
+    padding: 12px;
+
+    span {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+}
+
+.step-right {
+    flex: 1;
+}
+
+.step-description {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #000;
+    
+    p {
+        font-size: 1rem;
+    }
+}
+
+.our-process-image {
+    width: 450px;
+    height: auto;
+    border-radius: 20px;
+    border: 3px solid #000;
 }
 
 // Our team

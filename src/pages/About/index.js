@@ -4,9 +4,45 @@ import styles from './About.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
 const cx = classNames.bind(styles);
 
 function About() {
+    // Phần chữ kéo ngang
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start end", "end start"], // Bắt đầu khi phần tử xuất hiện
+    });
+    const x = useTransform(scrollYProgress, [0, 1], ["100%", "-75%"]);
+
+    // Phần step scroll
+    const ref1 = useRef(null);
+    const { scrollYProgress: scrollY1} = useScroll({
+        target: ref1,
+        offset: ["center end", "end start"],
+    });
+    const y1 = useTransform(scrollY1, [0, 0.6], ["0px", "558px"]);
+    const backgroundColor1 = useTransform(scrollY1, [0, 0.6], ["#fff", "#ffc2b0"]);
+
+    const ref2 = useRef(null);
+    const { scrollYProgress: scrollY2} = useScroll({
+        target: ref2,
+        offset: ["start center", "end start"],
+    });
+    const y2 = useTransform(scrollY2, [0, 0.6], ["0px", "558px"]);
+    const backgroundColor2 = useTransform(scrollY2, [0, 0.6], ["#fff", "#ffc2b0"]);
+
+    const ref3 = useRef(null);
+    const { scrollYProgress: scrollY3} = useScroll({
+        target: ref3,
+        offset: ["start center", "end start"],
+    });
+    const y3 = useTransform(scrollY3, [0, 0.6], ["0px", "558px"]);
+    const backgroundColor3 = useTransform(scrollY3, [0, 0.6], ["#fff", "#ffc2b0"]);
+
     return ( 
         <div className={cx("About")}>
             <div className={cx("hero")}>
@@ -41,6 +77,25 @@ function About() {
                         <img src={cx("https://cdn.prod.website-files.com/678b0c0393efc5b8320e8808/678b0c0393efc5b8320e8845_Frame%202.webp")} alt={"Burger"} className={cx("marquee-image")}/>
                     </div>
                 </div>
+            </div>
+
+            <div
+                ref={ref}
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "var(--yellow-color)",
+                    overflow: "hidden",
+                }}
+                >
+                    <motion.h2
+                        style={{ x, whiteSpace: "nowrap" }}
+                        className="header"
+                    >
+                        <span className={cx("title")} style={{fontSize: "12.5rem", color: "#000", fontWeight: "500"}}>WHERE TASTE COMES</span>
+                        <span className={cx("title-bite")} style={{fontSize: "10rem"}}>Alive</span>
+                    </motion.h2>
             </div>
 
             <div className={cx("our-story")}>
@@ -94,6 +149,75 @@ function About() {
                         </div>
                     </div>
                     <img src={cx("https://cdn.prod.website-files.com/678b0c0393efc5b8320e8808/678d0e09760478a30ec3be2d_Frame%2021.webp")} alt={"Core Values"} className={cx("our-story-image")} />
+                </div>
+            </div>
+
+            <div className={cx("our-process")}>
+                <div className={cx("our-process-wrapper")}>
+                    <div className={cx("our-mission-content")}>
+                        <p>Our Process</p>
+                        <h2 className={cx("our-story-header")}>
+                            <span className={cx("our-story-title")}>FRESH, FAST,</span>
+                            <span className={cx("our-story-title-highlight")}>Purpose</span>
+                        </h2> 
+                    </div>
+
+                    <div className={cx("step-wrapper")}>
+                        <div className={cx("step-1")} >
+                            <div className={cx("step-left")}>
+                                <motion.div className={cx("scroll-container")} ref={ref1} style={{ y:y1 }}>
+                                    <p>STEP 1:</p>
+                                    <motion.div style={{ backgroundColor: backgroundColor1 }} className={cx("step-dot")}><span>01</span></motion.div>
+                                </motion.div>
+                            </div>
+
+                            <div className={cx("step-right")}>
+                                <div className={cx("step-description")}>
+                                    <h3>Sourcing Quality Ingredients</h3>
+                                    <p>We start by carefully selecting the freshest and highest-quality ingredients. From premium cuts of meat to farm-fresh produce, every component of our menu is chosen to ensure maximum flavor and nutritional value.</p>
+                                    <img src={cx("https://cdn.prod.website-files.com/678b0c0393efc5b8320e8808/6791015142bf197859a505a9_member-picture-05.webp")} alt={"Core Values"} className={cx("our-process-image")} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={cx("line")}></div>
+
+                        <div className={cx("step-2")}>
+                            <div className={cx("step-left")}>
+                                <motion.div className={cx("scroll-container")} ref={ref2} style={{ y:y2 }}>
+                                    <p>STEP 2:</p>
+                                    <motion.div style={{ backgroundColor: backgroundColor2 }} className={cx("step-dot")}><span>02</span></motion.div>
+                                </motion.div>
+                            </div>
+
+                            <div className={cx("step-right")}>
+                                <div className={cx("step-description")}>
+                                    <h3>Crafting with Care</h3>
+                                    <p>Our team of expert chefs prepares each meal with precision and passion. Whether it’s grilling the perfect burger or frying golden, crispy fries, we follow tried-and-true methods to bring out the best in every dish.</p>
+                                    <img src={cx("https://cdn.prod.website-files.com/678b0c0393efc5b8320e8808/6791015142bf197859a505a1_member-picture-06.webp")} alt={"Core Values"} className={cx("our-process-image")} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={cx("line")}></div>
+
+                        <div className={cx("step-3")}>
+                            <div className={cx("step-left")}>
+                                <motion.div className={cx("scroll-container")} ref={ref3} style={{ y:y3 }}>
+                                    <p>STEP 3:</p>
+                                    <motion.div style={{ backgroundColor: backgroundColor3 }} className={cx("step-dot")}><span>03</span></motion.div>
+                                </motion.div>
+                            </div>
+
+                            <div className={cx("step-right")}>
+                                <div className={cx("step-description")}>
+                                    <h3>Serving with Speed</h3>
+                                    <p>Once your meal is ready, we deliver it fresh and fast to your table or doorstep. With our streamlined process, we ensure you enjoy your food at its peak — hot, fresh, and ready to satisfy your cravings.</p>
+                                    <img src={cx("https://cdn.prod.website-files.com/678b0c0393efc5b8320e8808/6791015142bf197859a50589_member-picture-02.webp")} alt={"Core Values"} className={cx("our-process-image")} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
