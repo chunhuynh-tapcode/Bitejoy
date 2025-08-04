@@ -4,7 +4,7 @@ import styles from './Header.module.scss';
 import { useState } from 'react';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faMultiply } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -14,10 +14,41 @@ function Header() {
     return (
         <header className={cx('header')}>
             <div className={cx('header-wrapper')}>
-
                 <a className={cx('header-logo')} href="/"><img src="https://cdn.prod.website-files.com/678b0c0393efc5b8320e8808/678feff4083448ea912b93c9_logo.svg" alt="BiteJoy Logo" /></a>
                 <div className={cx('header-icons')}>
-                    <a href="/cart"><FontAwesomeIcon className={cx('icon')} icon={faCartShopping} /></a>
+                    <div className={cx("header-cart")}>
+                        <a href="/#cart"><FontAwesomeIcon className={cx('icon')} icon={faCartShopping} /></a>
+                        <div id={cx("cart")} className={cx("cart-pop-up")}>
+                            <div className={cx("top")}>
+                                <span>YOUR CART</span>
+                                <a href=""><FontAwesomeIcon className={cx('icon-close')} icon={faMultiply} /></a>
+                            </div>
+
+                            <div className={cx("middle")}>
+                                <div className={cx("order")}>
+                                    <img className={cx("order-img")} src="https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e890a_classic-hamburger-filled.png" />
+                                    <div className={cx("order-wrapper")}>
+                                        <div className={cx("order-name")}>
+                                            <h3>Lamb Burger</h3>
+                                            <p>$ 9.90 USD</p>
+                                            <a>Remove</a>
+                                        </div>
+                                        <div className={cx("quantity")}>
+                                            <input className={cx("input")} aria-label="Update quantity" type="number" inputmode="numeric" value={1}></input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={cx("bottom")}>
+                                
+                            </div>
+                        </div>
+
+                        <div className={cx("cart-quantity")}>
+                            <p>0</p>
+                        </div>
+                    </div>
                     <div className={cx('menu-btn')} onClick={() => setIsMenuOpen(!isMenuOpen)}>
                         <span className={cx('menu-text')}>MENU</span>
                         <div className={cx('burger-icon-wrapper')}>
@@ -28,6 +59,7 @@ function Header() {
                     </div>
                 </div>
             </div>
+
             <div className={cx('mega-menu', {show: isMenuOpen})}>
                 <ul className={cx('pages-btn')}>
                     <li><a href='/'>HOME</a></li>

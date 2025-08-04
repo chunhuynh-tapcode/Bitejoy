@@ -34,6 +34,21 @@ function Blog() {
                     </div>
                 </div>
             </div>
+
+            <div className={cx("subscribe-wrapper")}>
+                <h2 className={cx("subscribe-header")}>
+                    <span className={cx("subscribe-title")}>SUBSCRIBE TO OUR</span>
+                    <span className={cx("subscribe-title-highlight")}>Newsletter</span>
+                </h2>
+
+                <div className={cx("subscribe-form")}>
+                    <input type="text" placeholder="Name" className={cx("input")} />
+                    <input type="email" placeholder="Email Address" className={cx("input")} />
+                    <div className={cx("send-btn")}>
+                        <button id={cx("send")} className={cx("send")}>Send Message</button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

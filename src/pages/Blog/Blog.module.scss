@@ -119,3 +119,78 @@
         font-size: 1rem;
     }
 }
+
+// Subscribe section
+.subscribe-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    padding: 100px 0;
+    background-color: var(--yellow-color);
+}
+
+.subscribe-header {
+    font-size: 9.5rem;
+    color: #000;
+    font-weight: 400;
+    margin-bottom: 16px;
+    line-height: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.subscribe-title {
+    font-family: 'Realce', sans-serif;
+}
+
+.subscribe-title-highlight {
+    font-family: 'Mentimum', sans-serif;
+    font-size: 8rem;
+    color: var(--primary-color);
+    -webkit-text-stroke: 6px #000;
+}
+
+.subscribe-form {
+    padding: 40px;
+    border: 3px solid #000;
+    border-radius: 20px;
+    width: 750px;
+}
+
+.input {
+    width: 100%;
+    padding: 12px 0;
+    border: 3px solid #000;
+    border-radius: 20px;
+    padding-left: 12px;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.send-btn {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.send {
+    width: 100%;
+    padding: 16px 0;
+    background-color: #000;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Outfit';
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: 0.3s ease-in;
+
+    &:hover {
+        background-color: #fff;
+        color: #000;
+        transition: 0.3s ease-in;
+    }
+}
