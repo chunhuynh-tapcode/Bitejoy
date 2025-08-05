@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faMultiply } from '@fortawesome/free-solid-svg-icons';
@@ -11,39 +12,15 @@ const cx = classNames.bind(styles);
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const [isCartOpen, setIsCartOpen] = useState(false)
+
     return (
         <header className={cx('header')}>
             <div className={cx('header-wrapper')}>
                 <a className={cx('header-logo')} href="/"><img src="https://cdn.prod.website-files.com/678b0c0393efc5b8320e8808/678feff4083448ea912b93c9_logo.svg" alt="BiteJoy Logo" /></a>
                 <div className={cx('header-icons')}>
-                    <div className={cx("header-cart")}>
-                        <a href="/#cart"><FontAwesomeIcon className={cx('icon')} icon={faCartShopping} /></a>
-                        <div id={cx("cart")} className={cx("cart-pop-up")}>
-                            <div className={cx("top")}>
-                                <span>YOUR CART</span>
-                                <a href=""><FontAwesomeIcon className={cx('icon-close')} icon={faMultiply} /></a>
-                            </div>
-
-                            <div className={cx("middle")}>
-                                <div className={cx("order")}>
-                                    <img className={cx("order-img")} src="https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e890a_classic-hamburger-filled.png" />
-                                    <div className={cx("order-wrapper")}>
-                                        <div className={cx("order-name")}>
-                                            <h3>Lamb Burger</h3>
-                                            <p>$ 9.90 USD</p>
-                                            <a>Remove</a>
-                                        </div>
-                                        <div className={cx("quantity")}>
-                                            <input className={cx("input")} aria-label="Update quantity" type="number" inputmode="numeric" value={1}></input>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={cx("bottom")}>
-                                
-                            </div>
-                        </div>
+                    <div className={cx("header-cart")} onClick={() => setIsCartOpen(true)}>
+                        <div><FontAwesomeIcon className={cx('icon')} icon={faCartShopping} /></div>
 
                         <div className={cx("cart-quantity")}>
                             <p>0</p>
@@ -85,6 +62,60 @@ function Header() {
                 </div>
             </div>
             {isMenuOpen && <div className={cx('overlay')} conClick={() => setIsMenuOpen(false)} />}
+
+            <AnimatePresence>
+                {isCartOpen && (
+                    <>
+                        <motion.div
+                            className={cx("cart-overlay")}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.7 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            onClick={() => setIsCartOpen(false)}
+                        />
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9, y: "-10%", transform: "translate(-50%, -50%)"}}
+                            animate={{ opacity: 1, scale: 1, y: "0%", transform: "translate(-50%, -50%)"}}
+                            exit={{ opacity: 0, scale: 0.9, y: "-10%"}}
+                            transition={{ duration: 0.3 }} 
+                            className={cx("cart-pop-up", {show: isCartOpen})}
+                        >
+                            <div className={cx("top")}>
+                                <p>YOUR CART</p>
+                                <span onClick={() => setIsCartOpen(false)}><FontAwesomeIcon className={cx('icon-close')} icon={faMultiply} /></span>
+                            </div>
+
+                            <div className={cx("middle")}>
+                                <div className={cx("order")}>
+                                    <img className={cx("order-img")} src="https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e890a_classic-hamburger-filled.png" />
+                                    <div className={cx("order-wrapper")}>
+                                        <div className={cx("order-name")}>
+                                            <h3>Lamb Burger</h3>
+                                            <p>$ 9.90 USD</p>
+                                            <span><a>Remove</a></span>
+                                        </div>
+                                        <div className={cx("quantity")}>
+                                            <input className={cx("input")} aria-label="Update quantity" type="number" inputmode="numeric" value={1}></input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={cx("bottom")}>
+                                <div className={cx("total-price")}>
+                                    <p>Total</p>
+                                    <span className={cx("price")}>$ 8.90 USD</span>
+                                </div>
+
+                                <div className={cx("checkout-btn")}>
+                                    <button id={cx("checkout")} className={cx("checkout")}>CONTINUE TO CHECKOUT</button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </header>
     );
 }
