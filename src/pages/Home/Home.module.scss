@@ -78,6 +78,8 @@
     justify-content: center;
     background-color: var(--pink-color);
     padding: 100px 0;
+    border-top: 4px solid #000;
+    border-bottom: 4px solid #000;
 }
 
 .menu-wrapper {
@@ -160,27 +162,45 @@
     font-weight: 500;
 }
 
+.add-to-cart {
+    position: absolute;
+    top: 20px;
+    right: 26px;
+    background-color: #000;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #fff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.add-to-cart:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 #fff;
+}
+
 .food-item-img-wrapper {
     display: block;
     position: relative;
     height: auto;
-    border: 3px solid #000;
-    border-radius: 20px;
-    cursor: pointer;
-    box-shadow: 4px 4px 0px #000;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    
-}
-.food-item-img-wrapper:hover {
-    transform: translate(4px, 4px);
-    box-shadow: 0 0 0 #000;
+    border: 4px solid #000;
+    border-radius: 20px;  
+    overflow: hidden;          
+    &:hover .food-item-image {
+        transform: scale(1.05);
+        transition: transform 0.5s ease-in-out;
+    }
 }
 
 .food-item-image {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 18px;
+    border-radius: 16px;
+    transition: transform 0.5s ease-in-out;
+    object-fit: contain;
 }
 
 // Reviews Section
@@ -253,7 +273,10 @@
 }
 
 .review-text {
+    display: flex;
+    align-items: center;
     font-size: 1.2rem;
+    height: 116px;
 }
 
 .author-info {

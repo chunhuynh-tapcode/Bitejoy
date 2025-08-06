@@ -27,9 +27,9 @@ export default function BlogDetail() {
                         </div>
                     </div>
                     <h1 className={cx("blog-header")}>{post.title}</h1>
-                    <div className={cx("blog-thumb-wrapper")}>
+
                         <img className={cx("blog-thumb")} src={post.image} alt={post.title} />
-                    </div>
+
                 </div>
 
                 <div className={cx("blog-content-wrapper")}>

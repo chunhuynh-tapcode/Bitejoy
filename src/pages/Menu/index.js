@@ -2,97 +2,114 @@ import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus, faPlus, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faStar, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 import React, { useState } from 'react';
+import { useCart } from "../../context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 
 const categories = ["BURGERS", "SIDES", "DESSERTS"];
 
 function Menu() {
+    // MENU
     const [activeCategory, setActiveCategory] = useState("BURGERS");
         
     const menuList = [
         { 
+            id: 1,
             name: "Lamb Burger", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e890a_classic-hamburger-filled-p-500.png",
-            price: "$9.90",
+            price: "9.90",
             category: "BURGERS"
         },
         { 
+            id: 2,
             name: "Beef Burger", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e890c_hamburger-with-tomato-lettuce-leaf-beef-patties-burger-buns-p-500.png",
-            price: "$8.90",
+            price: "8.90",
             category: "BURGERS"
         },
         { 
+            id: 3,
             name: "Bacon Burger", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e890d_appetizing-hamburger-blue-background-p-500.png",
-            price: "$7.90",
+            price: "7.90",
             category: "BURGERS"
         },
         { 
+            id: 4,
             name: "Vegan Burger", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e88db_high-angle-delicious-burger-fries-p-500.png",
-            price: "$9.50",
+            price: "9.50",
             category: "BURGERS"
         },
         { 
+            id: 5,
             name: "Classic Burger", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e88d9_classic-beef-burger-ready-be-served-p-500.png",
-            price: "$8.50",
+            price: "8.50",
             category: "BURGERS"
         },
         { 
+            id: 6,
             name: "Chicken Burger", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e88d9_classic-beef-burger-ready-be-served-p-500.png",
-            price: "$9.90",
+            price: "9.90",
             category: "BURGERS"
         },
 
         { 
+            id: 7,
             name: "Nuggets & Fries", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e8900_chicken-nuggets-french-fries-red-p-500.png",
-            price: "$7.50",
+            price: "7.50",
             category: "SIDES"
         },
         { 
+            id: 8,
             name: "Fries Cone", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e88fe_fries-cone-yellow-background-p-500.png",
-            price: "$6.50",
+            price: "6.50",
             category: "SIDES"
         },
         { 
+            id: 9,
             name: "Onion Rings", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e88ef_onion-rings-blue-box-p-500.png",
-            price: "$5.00",
+            price: "5.00",
             category: "SIDES"
         },
-
         { 
+            id: 10,
             name: "Ice Cream", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e8907_zach-camp-3D0HUHFcRrk-unsplash-p-500.png",
-            price: "$2.50",
+            price: "2.50",
             category: "DESSERTS"
         },
         { 
+            id: 11,
             name: "Chocolate Donuts", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e8905_top-view-arrangement-with-doughnuts-blue-background-p-500.png",
-            price: "$4.50",
+            price: "4.50",
             category: "DESSERTS"
         },
         { 
+            id: 12,
             name: "Strawberry Cake", 
             image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e8904_pink-strawberry-cake-portion-pink-background-p-500.png",
-            price: "$3.90",
+            price: "3.90",
             category: "DESSERTS"
         }
     ];
     const filteredMenu = menuList.filter(item => item.category === activeCategory);
     
+    // ADDTOCART
+    const { addToCart } = useCart();
 
+    // REVIEWS
     const reviews = [
         {
             name: "Sarah Martinez",
@@ -148,8 +165,6 @@ function Menu() {
         }
     };
 
-    
-
     return (
         <div className={cx("Menu")}>
             <div className={cx("menu")}>
@@ -178,7 +193,31 @@ function Menu() {
                             <div key={index} className={cx("food-item")}>
                                 <div className={cx("food-item-img-wrapper")}>
                                     <img src={item.image} alt={item.name} className={cx("food-item-image")} />
-                                    <div className={cx("price")}>{item.price}</div>
+                                    <div className={cx("price")}>${item.price}</div>
+                                    <div 
+                                        title='Add to your cart' 
+                                        className={cx("add-to-cart")} 
+                                        onClick={() => {
+                                            addToCart(item);
+                                                toast.success("Your order has added to cart!", {
+                                                position: "top-right",
+                                                autoClose: 2000,
+                                                closeOnClick: true,
+                                                pauseOnHover: false,
+                                                draggable: false,
+                                                style: {
+                                                    background: "#fff",
+                                                    color: "#000",
+                                                    fontSize: "1.2rem",
+                                                    border: "4px solid #000",
+                                                    padding: "24px", 
+                                                    fontFamily: "Outfit"
+                                                }
+                                            });
+                                        }}
+                                    >
+                                        <FontAwesomeIcon className={cx('icon')} icon={faCartShopping} />
+                                    </div>
                                 </div>
                                 <div className={cx("food-item-name")}>{item.name}</div>
                             </div>

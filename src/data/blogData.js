@@ -55,7 +55,7 @@ export const blogPosts = [
     image: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/67912fb2629da1d796bbb6d8_top-view-delicious-french-fries-p-800.jpg",
     content: "Chi tiết bài viết...",
     readingTime: "6 min",
-    bloggerImg: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/67912fd9b2dfaf2554cbc25b_member-picture-02.webpv",
+    bloggerImg: "https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/67912fd9b2dfaf2554cbc25b_member-picture-02.webp",
     bloggerName: "James Carter",
     bloggerRole: "Restaurant Manager"
   },

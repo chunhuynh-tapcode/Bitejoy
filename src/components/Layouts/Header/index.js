@@ -3,6 +3,7 @@ import styles from './Header.module.scss';
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "../../../context/CartContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faMultiply } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +13,15 @@ const cx = classNames.bind(styles);
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const [isCartOpen, setIsCartOpen] = useState(false)
+    const [isCartOpen, setIsCartOpen] = useState(false);
+
+    
+    const { cartItems, removeFromCart, updateQuantity } = useCart();
+    const hasItems = cartItems.length > 0;
+    
+    const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    
+    const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
         <header className={cx('header')}>
@@ -23,7 +32,7 @@ function Header() {
                         <div><FontAwesomeIcon className={cx('icon')} icon={faCartShopping} /></div>
 
                         <div className={cx("cart-quantity")}>
-                            <p>0</p>
+                            <p>{totalQuantity}</p>
                         </div>
                     </div>
                     <div className={cx('menu-btn')} onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -74,6 +83,7 @@ function Header() {
                             transition={{ duration: 0.3 }}
                             onClick={() => setIsCartOpen(false)}
                         />
+                        
                         <motion.div 
                             initial={{ opacity: 0, scale: 0.9, y: "-10%", transform: "translate(-50%, -50%)"}}
                             animate={{ opacity: 1, scale: 1, y: "0%", transform: "translate(-50%, -50%)"}}
@@ -86,32 +96,49 @@ function Header() {
                                 <span onClick={() => setIsCartOpen(false)}><FontAwesomeIcon className={cx('icon-close')} icon={faMultiply} /></span>
                             </div>
 
-                            <div className={cx("middle")}>
-                                <div className={cx("order")}>
-                                    <img className={cx("order-img")} src="https://cdn.prod.website-files.com/678b0c0393efc5b8320e8818/678b0c0393efc5b8320e890a_classic-hamburger-filled.png" />
-                                    <div className={cx("order-wrapper")}>
-                                        <div className={cx("order-name")}>
-                                            <h3>Lamb Burger</h3>
-                                            <p>$ 9.90 USD</p>
-                                            <span><a>Remove</a></span>
+                            {hasItems ? (
+                                <>
+                                    <div className={cx("middle")}>
+                                        {cartItems.map(item => (
+                                            <div key={item.id} className={cx("order")}>
+                                                <img className={cx("order-img")} src={item.image} />
+                                                <div className={cx("order-wrapper")}>
+                                                    <div className={cx("order-name")}>
+                                                        <h3>{item.name}</h3>
+                                                        <p>${item.price}</p>
+                                                        <span onClick={() => removeFromCart(item.id)}>Remove</span>
+                                                    </div>
+                                                    <div className={cx("quantity")}>
+                                                        <input 
+                                                            className={cx("input")} 
+                                                            type="number" 
+                                                            value={item.quantity}
+                                                            min="1"
+                                                            onChange={e => updateQuantity(item.id, parseInt(e.target.value) || 1)}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className={cx("bottom")}>
+                                        <div className={cx("total-price")}>
+                                            <p>Total</p>
+                                            <span className={cx("price")}>${total.toFixed(2)}</span>
                                         </div>
-                                        <div className={cx("quantity")}>
-                                            <input className={cx("input")} aria-label="Update quantity" type="number" inputmode="numeric" value={1}></input>
+
+                                        <div className={cx("checkout-btn")}>
+                                            <button className={cx("checkout")}>CONTINUE TO CHECKOUT</button>
                                         </div>
                                     </div>
+                                </>
+                            ) : (
+                                <div className={cx("emptyCart")}>
+                                    <p>No items found.</p>
                                 </div>
-                            </div>
-
-                            <div className={cx("bottom")}>
-                                <div className={cx("total-price")}>
-                                    <p>Total</p>
-                                    <span className={cx("price")}>$ 8.90 USD</span>
-                                </div>
-
-                                <div className={cx("checkout-btn")}>
-                                    <button id={cx("checkout")} className={cx("checkout")}>CONTINUE TO CHECKOUT</button>
-                                </div>
-                            </div>
+                            )
+                            }
                         </motion.div>
                     </>
                 )}
