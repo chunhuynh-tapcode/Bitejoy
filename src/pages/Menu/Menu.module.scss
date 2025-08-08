@@ -131,7 +131,20 @@
     height: auto;
     border-radius: 16px;
     transition: transform 0.5s ease-in-out;
+}
 
+.food-item {
+    position: relative;
+}
+
+.food-item-name {
+    position: absolute;
+    left: 24px;
+    bottom: 12px;
+    font-family: 'Mentimum';
+    color: #fff;
+    -webkit-text-stroke: 2px #000;
+    z-index: 9999999;
 }
 
 // Reviews Section
