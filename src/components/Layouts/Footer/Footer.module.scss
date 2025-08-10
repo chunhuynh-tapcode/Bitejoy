@@ -1,39 +1,31 @@
+@import "../../../components/GlobalStyles/variables";
+
 .footer {
     display: flex;
     justify-content: center;
-    // position: relative;
     background-color: #000;
     padding: 100px 0;
+
+    @include respond(phone) {
+        width: 100%;
+        padding: 50px 0;
+    }
 }
-// .footer::before {
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     right: 0;
-//     border-width: 0 1000px 60px;
-//     border-style: solid;
-//     border-color: transparent var(--yellow-color) transparent var(--yellow-color);
-// }
-// .footer-wave {
-//     // display: block;
-//     position: absolute;
-//     top: 1000px;
-//     left: 0;
-//     bottom: 0;
-//     width: 100%;
-//     height: 150px;
-//     z-index: -1;
-// }
 
 .footer-wrapper {
-    // position: absolute;
     width: 1440px;
     display: flex;
     justify-content: space-between;
     padding: 20px 0;
     flex-direction: column;
     gap: 150px;
+
+    @include respond(phone) {
+        width: 100%;
+        padding: 12px 0;
+        gap: 50px;
+        margin: 0 40px;
+    }
 }
 
 .top {
@@ -41,9 +33,23 @@
     justify-content: space-between;
 }
 
+.footer-logo {
+    line-height: 1;
+    @include respond(phone) {
+        img {
+            width: 120px;
+            height: 40px;
+        }
+    }
+}
+
 .footer-text {
     color: #fff;
     font-size: 1.2rem;
+
+    @include respond(phone) {
+        font-size: 1rem;
+    }
 }
 
 .footer-go-up {
@@ -71,6 +77,11 @@
 .bottom {
     display: flex;
     justify-content: space-between;
+
+    @include respond(phone) {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 
 .pages {
@@ -78,11 +89,21 @@
     gap: 15px;
     color: #fff;
     align-items: center;
+
+    @include respond(phone) {
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+    }
 }
 .pages a {
     cursor: pointer;
     color: #fff;
     text-decoration: none;
+
+    @include respond(phone) {
+        
+    }
 }
 .pages a:hover {
     color: var(--yellow-color);
@@ -91,6 +112,10 @@
 .socials {
     display: flex;
     gap: 15px;
+
+    @include respond(phone) {
+        justify-content: center;
+    }
 }
 
 .icon {
@@ -101,6 +126,10 @@
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: 2px 2px 0px #fff;
     border: 1px solid #000;
+
+    @include respond(phone) {
+        width: 50px;
+    }   
 }
 
 .icon:hover {

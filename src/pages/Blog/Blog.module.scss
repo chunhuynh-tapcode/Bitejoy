@@ -7,12 +7,18 @@
   src: url('/assets/font/realce.otf') format('truetype');
 }
 
+@import "../../components/GlobalStyles/variables";
+
 .blog-wrapper {
     display: flex;
     flex-direction: column;
     gap: 48px;
     padding: 100px 0;
     background-color: var(--yellow-color);
+
+    @include respond(phone) {
+        padding: 32px 0;
+    }
 }
 
 .blog-header {
@@ -25,6 +31,11 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
+
+    @include respond(phone) {
+        font-size: 7rem;
+        line-height: 1;
+    }
 }
 
 .blog-title {
@@ -36,6 +47,12 @@
     font-size: 8rem;
     color: var(--primary-color);
     -webkit-text-stroke: 6px #000;
+
+    @include respond(phone) {
+        margin-left: 12px;
+        font-size: 5rem;
+        -webkit-text-stroke: 2px #000;
+    }
 }
 
 .blog-container {
@@ -49,6 +66,12 @@
     gap: 32px;
     width: 1440px;
     align-items: center;
+
+    @include respond(phone) {
+        width: 320px;
+        grid-template-columns: repeat(1, minmax(250px, 1fr));
+        gap: 0;
+    }
 }
 
 .card {
@@ -71,6 +94,10 @@
     box-shadow: 4px 4px 0 #000;
     border-radius: 20px;
     overflow: hidden;
+
+    @include respond(phone) {
+        box-shadow: 2px 2px 0 #000;
+    }
 }
 
 .blog-img {
@@ -118,6 +145,16 @@
         text-transform: uppercase;
         font-size: 1rem;
     }
+
+    @include respond(phone) {
+        padding: 16px 16px;
+        h3 {
+            font-size: 1.4rem;
+        }
+        p {
+            font-size: 1rem;
+        }
+    }
 }
 
 // Subscribe section
@@ -128,6 +165,10 @@
     gap: 48px;
     padding: 100px 0;
     background-color: var(--yellow-color);
+
+    @include respond(phone) {
+        padding: 32px 0;
+    }
 }
 
 .subscribe-header {
@@ -141,6 +182,12 @@
     align-items: center;
     justify-content: center;
     gap: 24px;
+
+    @include respond(phone) {
+        font-size: 4rem;
+        line-height: 1;
+        gap: 12px;
+    }
 }
 
 .subscribe-title {
@@ -152,6 +199,12 @@
     font-size: 8rem;
     color: var(--primary-color);
     -webkit-text-stroke: 6px #000;
+
+    @include respond(phone) {
+        margin-left: 12px;
+        font-size: 3rem;
+        -webkit-text-stroke: 2px #000;
+    }
 }
 
 .subscribe-form {
@@ -159,6 +212,11 @@
     border: 3px solid #000;
     border-radius: 20px;
     width: 750px;
+
+    @include respond(phone) {
+        width: 370px;
+        padding: 24px;
+    }
 }
 
 .input {
