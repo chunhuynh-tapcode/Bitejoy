@@ -408,7 +408,7 @@
         opacity: 0;
         transition: transform 1s linear, opacity 1s linear;
 
-        li a {
+        .tab-btn {
             font-family: 'Realce', sans-serif;
             font-size: 7rem;
             font-weight: 500;

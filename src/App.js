@@ -1,25 +1,27 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import "./App.scss"
-import Header from './components/Layouts/Header';
-import Footer from './components/Layouts/Footer';
+import Header from "./components/Layouts/Header";
+import Footer from "./components/Layouts/Footer";
 
-import Home from './pages/Home';
-import Menu from './pages/Menu';
-import Contact from './pages/Contact';
-import About from './pages/About';
-import Blog from './pages/Blog';
+import Home from "./pages/Home";
+import Menu from "./pages/Menu";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
 import BlogDetail from "./pages/Blog/[slug]";
 import AdminBlog from "./pages/AdminBlog";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { CartProvider } from "./context/CartContext";
+
+import PageTitleUpdater from "./PageTitleUpdater";
 
 function App() {
   return (
     <Router>
+      <PageTitleUpdater />
       <div className="App">
         <div className="App-wrapper">
           <CartProvider>
@@ -36,7 +38,7 @@ function App() {
             <Footer />
             <ToastContainer />
           </CartProvider>
-        </div>  
+        </div>
       </div>
     </Router>
   );

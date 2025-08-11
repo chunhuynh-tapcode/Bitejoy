@@ -7,6 +7,8 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+import { NavLink } from "react-router-dom";
+
 const cx = classNames.bind(styles);
 
 function About() {
@@ -72,7 +74,7 @@ function About() {
           </p>
 
           <div className={cx("contact-us-btn")}>
-            <a href="/contact" className={cx("btn-link")}>
+            <NavLink to="/contact" className={cx("btn-link")}>
               CONTACT US
               <div className={cx("btn-arrow")}>
                 <FontAwesomeIcon
@@ -80,7 +82,7 @@ function About() {
                   icon={faArrowRight}
                 />
               </div>
-            </a>
+            </NavLink>
           </div>
         </div>
 
@@ -210,7 +212,7 @@ function About() {
             </div>
 
             <div className={cx("menu-btn")}>
-              <a href="/menu" className={cx("btn-link")}>
+              <NavLink to="/menu" className={cx("btn-link")}>
                 OUR MENU
                 <div className={cx("btn-arrow")}>
                   <FontAwesomeIcon
@@ -218,7 +220,7 @@ function About() {
                     icon={faArrowRight}
                   />
                 </div>
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>
@@ -247,7 +249,7 @@ function About() {
             </div>
 
             <div className={cx("menu-btn")}>
-              <a href="/menu" className={cx("btn-link")}>
+              <NavLink to="/menu" className={cx("btn-link")}>
                 OUR MENU
                 <div className={cx("btn-arrow")}>
                   <FontAwesomeIcon
@@ -255,7 +257,7 @@ function About() {
                     icon={faArrowRight}
                   />
                 </div>
-              </a>
+              </NavLink>
             </div>
           </div>
           <img

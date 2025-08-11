@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -417,7 +418,7 @@ function Home() {
                 compromising on quality.
               </p>
               <div className={cx("abt-us-btn")}>
-                <a href="/about" className={cx("btn-link")}>
+                <NavLink to="/about" className={cx("btn-link")}>
                   ABOUT US
                   <div className={cx("btn-arrow")}>
                     <FontAwesomeIcon
@@ -425,7 +426,7 @@ function Home() {
                       icon={faArrowRight}
                     />
                   </div>
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
