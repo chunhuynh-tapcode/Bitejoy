@@ -7,6 +7,8 @@
   src: url('/assets/font/realce.otf') format('truetype');
 }
 
+@import "../../components/GlobalStyles/variables";
+
 .blog-post {
     display: flex;
     justify-content: center;
@@ -16,6 +18,11 @@
 .blog-wrapper {
     width: 1120px;
     padding: 80px 0;
+
+    @include respond(phone) {
+        width: 100%;
+        padding: 32px 10px;
+    }
 }
 
 .blog-type {
@@ -25,6 +32,10 @@
 
     p {
         font-size: 1rem;
+    }
+
+    @include respond(phone) {
+        flex-direction: column;
     }
 }
 
@@ -50,6 +61,11 @@
     color: #000;
     text-transform: uppercase;
     line-height: 1;
+
+    @include respond(phone) {
+        font-size: 4rem;
+        line-height: 1;
+    }
 }
 
 .blog-thumb-wrapper {
@@ -74,6 +90,11 @@
     display: flex;
     gap: 40px;
     margin-top: 40px;
+
+    @include respond(phone) {
+        flex-direction: column;
+        margin-top: 24px;
+    }
 }
 
 .blogger-wrapper {
@@ -89,6 +110,18 @@
     p {
         font-size: 1rem;
     }
+
+    @include respond(phone) {
+        width: 100%;
+        gap: 12px;
+        align-items: center;
+        h3 {
+            font-size: 1rem;
+        }
+        p {
+            font-size: 0.8rem;
+        }
+    }
 }
 
 .avatar-img-wrapper {
@@ -96,6 +129,11 @@
     height: auto;
     border: 3px solid #000;
     border-radius: 50%;
+
+    @include respond(phone) {
+        height: 120px;
+        width: 120px;
+    }
 }
 
 .avatar-image {
@@ -104,7 +142,6 @@
     width: 100%;
     height: auto;
     border-radius: 50%;
-
 }
 
 .socials {
@@ -112,6 +149,10 @@
     flex-direction: column;
     gap: 8px;
     margin-top: 12px;
+
+    @include respond(phone) {
+        flex-direction: row;
+    }
 }
 
 .icon-social {
@@ -122,6 +163,10 @@
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: 2px 2px 0px #000;
     border: 1px solid #000;
+
+    @include respond(phone) {
+        width: 35px;
+    }
 }
 
 .icon-social:hover {
@@ -138,5 +183,15 @@
     }
     img {
         margin: 24px 0;
+    }
+
+    @include respond(phone) {
+        h2 {
+            font-size: 1.5rem;
+            margin: 12px 0;
+        }
+        p {
+            font-size: 1rem;
+        }
     }
 }

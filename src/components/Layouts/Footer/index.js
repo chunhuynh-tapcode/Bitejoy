@@ -46,11 +46,21 @@ function Footer() {
 
         <div className={cx("bottom")}>
           <nav className={cx("pages")}>
-            <NavLink to="/">HOME</NavLink>
-            <NavLink to="/menu">MENU</NavLink>
-            <NavLink to="/about">ABOUT</NavLink>
-            <NavLink to="/blog">BLOG</NavLink>
-            <NavLink to="/contact">CONTACT</NavLink>
+            <NavLink className={cx("tab-btn")} to="/">
+              HOME
+            </NavLink>
+            <NavLink className={cx("tab-btn")} to="/menu">
+              MENU
+            </NavLink>
+            <NavLink className={cx("tab-btn")} to="/about">
+              ABOUT
+            </NavLink>
+            <NavLink className={cx("tab-btn")} to="/blog">
+              BLOG
+            </NavLink>
+            <NavLink className={cx("tab-btn")} to="/contact">
+              CONTACT
+            </NavLink>
           </nav>
           <div className={cx("socials")}>
             <a

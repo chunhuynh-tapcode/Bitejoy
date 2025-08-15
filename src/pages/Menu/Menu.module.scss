@@ -54,11 +54,16 @@
         line-height: 1;
         flex-direction: column;
         gap: 12px;
+        justify-content: left;
     }
 }
 
 .menu-title {
     font-family: 'Realce', sans-serif;
+
+    @include respond(phone) {
+        text-align: center;
+    }
 }
 
 .menu-title-highlight {
@@ -118,7 +123,7 @@
     gap: 32px;
 
     @include respond(phone) {
-        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        grid-template-columns: 2fr;
         gap: 8px;
         margin: 0 12px;
     }
@@ -236,6 +241,7 @@
 }
 
 .reviews-header {
+    display: flex;
     font-size: 9.5rem;
     color: #000;
     font-weight: 400;
@@ -245,6 +251,7 @@
     @include respond(phone) {
         font-size: 5rem;
         line-height: 1;
+        flex-direction: column;
     } 
 }
 
@@ -256,6 +263,10 @@
 
 .reviews-title {
     font-family: 'Realce', sans-serif;
+
+    @include respond(phone) {
+        text-align: center;
+    }
 }
 
 .reviews-title-highlight {
@@ -370,7 +381,7 @@
     gap: 24px;
 
     @include respond(phone) {
-        font-size: 7rem;
+        font-size: 6rem;
         line-height: 1;
     }
 }
@@ -386,8 +397,7 @@
     -webkit-text-stroke: 6px #000;
 
     @include respond(phone) {
-        margin-left: 12px;
-        font-size: 5rem;
+        font-size: 4rem;
         -webkit-text-stroke: 2px #000;
     }
 }
@@ -451,6 +461,13 @@
     }
 }
 
+.icon-faq {
+    @include respond(phone) {
+        font-size: 1rem;
+        line-height: 1;
+    }
+}
+
 .answer-wrapper {
     text-align: left;
     padding: 0 32px;
@@ -458,5 +475,10 @@
 
 .answer {
     font-size: 1rem;
+
+    @include respond(phone) {
+        font-size: 0.8rem;
+        text-align: justify;
+    }
 }
 
